@@ -1,0 +1,2 @@
+D:\Azure_Bot\WebSocket-Node-master\obj\x86\Release\WebSocketNodeNew.vbproj.AssemblyReference.cache
+D:\Azure_Bot\WebSocket-Node-master\obj\x86\Release\WebSocketNodeNew.vbproj.CoreCompileInputs.cache

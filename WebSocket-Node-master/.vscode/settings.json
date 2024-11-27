@@ -1,4 +1,0 @@
-{
-    "appService.defaultWebAppToDeploy": "/subscriptions/167e4d5e-3f9a-4c74-878a-c0fe4fc7f08c/resourceGroups/SpeechEchoBotTutorial-ResourceGroup/providers/Microsoft.Web/sites/WebsocketNPM",
-    "appService.deploySubpath": "."
-}

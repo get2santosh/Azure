@@ -6,8 +6,8 @@ const axios = require('axios');
 const DIRECT_LINE_SECRET = 'Bearer Ho4kmkcvszc.rESAsx5Iqv1Mqx3D26EQF85HzGL2SsfI27zVmanjl38';
 // Create HTTPS server with the correct certificate and key configuration
 const server = https.createServer({
-    cert: fs.readFileSync('D:\\Azure_Bot\\WebSocket_27112024\\Files\\unfydssl_2024.pem'),
-    key: fs.readFileSync('D:\\Azure_Bot\\WebSocket_27112024\\Files\\privateKey.key'),
+    cert: fs.readFileSync('./Files/unfydssl_2024.pem'),
+    key: fs.readFileSync('./Files/privateKey.key'),
     passphrase: 'Smartyz@6541'
 });
 

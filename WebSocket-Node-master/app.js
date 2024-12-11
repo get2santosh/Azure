@@ -11,7 +11,7 @@ const server = https.createServer({
     passphrase: 'Smartyz@6541'
 });
 
-// WebSocket server attached to the HTTPS server
+/// WebSocket server attached to the HTTPS server
 const wss = new WebSocket.Server({ server });
 
 // Listen for connections on the WebSocket server

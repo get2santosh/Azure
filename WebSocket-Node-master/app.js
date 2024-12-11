@@ -16,12 +16,12 @@ const wss = new WebSocket.Server({ server });
 
 // Listen for connections on the WebSocket server
 wss.on('connection', (clientSocket) => {
-    console.log('Client connected to WebSocket server');
+    context.log('Client connected to WebSocket server');
     // Message handling logic here...
     clientSocket.on('message', async (message) => {
         try {
             const { API_Key, Client_Secret } = JSON.parse(message);
-            console.log('Received static parameters:', 'API_Key =>', API_Key, ', Client_Secret =>', Client_Secret);
+            context.log('Received static parameters:', 'API_Key =>', API_Key, ', Client_Secret =>', Client_Secret);
             clientSocket.send(`Server received static parameters: ${message}`);
 
             try {
@@ -33,7 +33,7 @@ wss.on('connection', (clientSocket) => {
                 const botSocket = new WebSocket(botFrameworkUrl);
 
                 botSocket.on('open', () => {
-                    console.log('Connected to Azure Bot Framework');
+                    context.log('Connected to Azure Bot Framework');
                     const dynamicMessage = { API_Key, Client_Secret };
                     botSocket.send(JSON.stringify(dynamicMessage));
                 });
@@ -46,23 +46,23 @@ wss.on('connection', (clientSocket) => {
                 botSocket.on('close', () => clientSocket.close());
 
                 botSocket.on('error', (error) => {
-                    console.error('Azure WebSocket error:', error);
+                    context.log.error('Azure WebSocket error:', error);
                     clientSocket.send(JSON.stringify({ error: 'Failed to connect to Azure Bot Framework' }));
                     clientSocket.close();
                 });
             } catch (error) {
-                console.error('Error establishing Azure Bot connection:', error);
+                context.log.error('Error establishing Azure Bot connection:', error);
                 clientSocket.send(JSON.stringify({ error: 'Failed to connect to Azure Bot Framework' }));
                 clientSocket.close();
             }
         } catch (err) {
-            console.error('Invalid JSON format in received message:', message);
+            context.log.error('Invalid JSON format in received message:', message);
             clientSocket.send(JSON.stringify({ error: 'Invalid message format' }));
         }
     });
 
     clientSocket.on('error', (error) => {
-        console.error('WebSocket server error:', error);
+        context.log.error('WebSocket server error:', error);
     });
 });
 
@@ -70,7 +70,7 @@ wss.on('connection', (clientSocket) => {
 // const PORT = 443;
 const PORT = process.env.PORT || 443;
 server.listen(PORT, () => {
-    console.log(`WebSocket server running on wss://localhost:${PORT}`);
+    context.log(`WebSocket server running on wss://localhost:${PORT}`);
 });
 
 // Helper functions
@@ -94,15 +94,15 @@ const socket = new WebSocket('wss://localhost:443', {
     rejectUnauthorized: false // Allow self-signed certificates for testing
 });
 socket.on('open', () => {
-    console.log('Connected to WebSocket server');
+    context.log('Connected to WebSocket server');
     socket.send(JSON.stringify({ API_Key: 'param1', Client_Secret: 'param2' }));
 });
 socket.on('message', (data) => {
-    console.log('Message from server:', data.toString());
+    context.log('Message from server:', data.toString());
 });
 socket.on('error', (error) => {
-    console.error('WebSocket client error:', error);
+    context.log.error('WebSocket client error:', error);
 });
 socket.on('close', () => {
-    console.log('Client connection closed');
+    context.log('Client connection closed');
 });

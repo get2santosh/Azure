@@ -66,7 +66,7 @@ wss.on('connection', (clientSocket) => {
     });
 });
 
-// Start the server and WebSocket server on port 443
+// Start the server and WebSocket server on port 443 d
 // const PORT = 443;
 const PORT = process.env.PORT || 443;
 server.listen(PORT, () => {

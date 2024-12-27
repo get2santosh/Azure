@@ -46,23 +46,23 @@ wss.on('connection', (clientSocket) => {
                 botSocket.on('close', () => clientSocket.close());
 
                 botSocket.on('error', (error) => {
-                    console.log.error('Azure WebSocket error:', error);
+                    console.error('Azure WebSocket error:', error);
                     clientSocket.send(JSON.stringify({ error: 'Failed to connect to Azure Bot Framework' }));
                     clientSocket.close();
                 });
             } catch (error) {
-                console.log.error('Error establishing Azure Bot connection:', error);
+                console.error('Error establishing Azure Bot connection:', error);
                 clientSocket.send(JSON.stringify({ error: 'Failed to connect to Azure Bot Framework' }));
                 clientSocket.close();
             }
         } catch (err) {
-            console.log.error('Invalid JSON format in received message:', message);
+            console.error('Invalid JSON format in received message:', message);
             clientSocket.send(JSON.stringify({ error: 'Invalid message format' }));
         }
     });
 
     clientSocket.on('error', (error) => {
-        console.log.error('WebSocket server error:', error);
+        console.error('WebSocket server error:', error);
     });
 });
 
@@ -101,7 +101,7 @@ socket.on('message', (data) => {
     console.log('Message from server:', data.toString());
 });
 socket.on('error', (error) => {
-    console.log.error('WebSocket client error:', error);
+    console.error('WebSocket client error:', error);
 });
 socket.on('close', () => {
     console.log('Client connection closed');
